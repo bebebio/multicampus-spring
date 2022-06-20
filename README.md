@@ -13,7 +13,8 @@
 |2017-03-27|mybatis04|**마이바티스(4)**<br>- 테이블 컬럼명과 모델 클래스 변수명 매핑<br>- 중복 쿼리문 재사용|
 |2017-03-28|mybatis05|**마이바티스(5)**<br>- 자동 생성된 AUTO_INCREMENT 획득<br>- parameterType과 resultType을 Map 타입으로 사용<br>- 다이나믹 쿼리|
 |2017-03-29|mybatis_board|**마이바티스(6)**<br>- Service 생성<br>- 페이징 처리|
-|2017-03-29|spring_mybatis|**스프링 + 마이바티스 연동**|
+|2017-03-29|mybatis_board||
+|2017-03-30|spring_mybatis|**스프링 + 마이바티스 연동**|
 |2017-04-03|spring06|**스프링 AOP(1)**<br>- XML 설정 방식|
 |2017-04-04|spring06|**스프링 AOP(2)**<br>- 애노테이션 설정 방식|
 |2017-04-04|spring_board_service|**스프링 AOP(3)**<br>- 스프링 트랜잭션|
