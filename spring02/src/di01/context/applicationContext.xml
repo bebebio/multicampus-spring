@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="car" class="di01.bean.Car">
+		<!-- property name="tire" ref="tire"></property -->
+		<constructor-arg ref="tire"></constructor-arg>
+		<property name="array">
+			<array>
+				<value>10</value>
+				<value type="java.lang.Integer">20</value>
+				<ref bean="tire"/>
+			</array>
+		</property>
+		<property name="list">
+			<list>
+				<value>10</value> <!-- String 타입 -->
+				<value type="java.lang.Integer">20</value> <!-- Integer 타입 -->
+				<ref bean="tire"/> <!-- Tire 타입 -->
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="key1" value="10"></entry>
+				<entry key="key2" value-type="java.lang.Integer" value="20"></entry>
+				<entry key="key3" value-ref="tire"></entry>
+			</map>
+		</property>
+		<property name="set">
+			<set>
+				<value>10</value>
+				<value type="java.lang.Integer">20</value>
+				<ref bean="tire"/>
+			</set>
+		</property>
+	</bean>
+	
+	<bean id="tire" class="di01.bean.KoreaTire"></bean>
+	
+</beans>
