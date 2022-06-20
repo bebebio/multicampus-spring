@@ -4,7 +4,7 @@
 |--|--|--|
 |2017-03-20|spring01|**제어의 역전(IoC)**<br>- 빈 객체 등록<br>- 컨텍스트 빌드<br>- 빈 객체 획득<br>- 빈 관리 정책(XML)|
 |2017-03-21|spring02|**의존성 주입(DI)**<br>- 생성자 주입<br>- 설정자 주입<br>- 컬렉션 주입<br>- 빈 관리 정책(애노테이션)|
-|2017-03-22|empdeptjdbc|**일반 JDBC**<br>사원정보 JDBC  구현<br>- PreparedStatementWrapper 클래스 사용|
+|2017-03-22|empdeptjdbc|**일반 JDBC**<br>- 사원정보 JDBC  구현<br>- PreparedStatementWrapper 클래스 사용|
 |2017-03-22|spring03|**스프링 JDBC(1)**<br>- JdbcTemplate|
 |2017-03-23|spring04|**스프링 JDBC(2)**<br>- NamedParameterJdbcTemplate|
 |2017-03-24|mybatis01|**마이바티스(1)**<br>- XML Mapper 방식으로 구현|
