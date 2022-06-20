@@ -15,6 +15,8 @@
 |2017-03-29|mybatis_board|**마이바티스(6)**<br>- Service 생성<br>- 페이징 처리|
 |2017-03-29|mybatis_board||
 |2017-03-30|spring_mybatis|**스프링 + 마이바티스 연동**|
+|2017-03-31|spring_mybatis||
+|2017-03-31|spring_mybatis_board||
 |2017-04-03|spring06|**스프링 AOP(1)**<br>- XML 설정 방식|
 |2017-04-04|spring06|**스프링 AOP(2)**<br>- 애노테이션 설정 방식|
 |2017-04-04|spring_board_service|**스프링 AOP(3)**<br>- 스프링 트랜잭션|
