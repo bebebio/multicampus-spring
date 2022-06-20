@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IProductDao">
+	
+	<insert id="insert" parameterType="productVo">
+		<selectKey resultType="int" keyProperty="code" order="BEFORE">
+			SELECT IFNULL(MAX(CODE), 0) + 1 AS CODE FROM PRODUCT
+		</selectKey>
+		
+		INSERT INTO PRODUCT ( 
+			  CODE
+			, NAME
+			, PRICE
+			, PICTUREURL
+			, DESCRIPTION 
+		) VALUES ( 
+			  ${code}
+			, #{name}
+			, ${price}
+			, #{pictureurl}
+			, #{description} 
+		)
+	</insert>
+	
+	<select id="selectOne" parameterType="productVo" resultType="productVo">
+		SELECT CODE AS code
+			 , NAME AS name
+			 , PRICE AS price
+			 , PICTUREURL AS pictureurl
+			 , DESCRIPTION AS description 
+		FROM PRODUCT
+		WHERE CODE = ${code}
+	</select>
+	
+	<select id="selectList" parameterType="productVo" resultType="productVo">
+		SELECT PDT.CODE AS code
+			 , PDT.NAME AS name
+			 , PDT.PRICE AS price
+			 , PDT.PICTUREURL AS pictureurl
+			 , PDT.DESCRIPTION AS description 
+		FROM
+		(
+			SELECT CODE, NAME, PRICE, PICTUREURL, DESCRIPTION 
+			FROM PRODUCT
+			WHERE 1 = 1
+			<if test="scName != null and scName != ''">
+				AND NAME LIKE CONCAT('%', #{scName},'%')
+			</if>
+		) PDT
+		LIMIT ${(pageIndex - 1) * 10}, ${pageSize}
+	</select>
+	
+	<select id="selectTotalCount" parameterType="productVo" resultType="int">
+		SELECT COUNT(*) FROM PRODUCT
+		WHERE 1 = 1
+		<if test="scName != null and scName != ''">
+			AND NAME LIKE CONCAT('%', #{scName},'%')
+		</if>
+	</select>
+	
+	
+</mapper>
