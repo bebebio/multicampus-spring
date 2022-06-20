@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IBoardDao">
+	
+	<sql id="title">
+		<choose>
+			<when test="title != null and title != ''">
+				#{title}
+			</when>
+			<otherwise>
+				'제목없음'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="content">
+		<choose>
+			<when test="content != null and content != ''">
+				#{content}
+			</when>
+			<otherwise>
+				'내용없음'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 
+		# keyProperty : AUTO_INCREMENT로 생성된 값을 저장할 키
+			- num이라는 키 값으로 세팅(모델 클래스인 경우에는 setNum() 함수 실행)
+	 -->
+	<insert id="insertBoard" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="num">
+		INSERT INTO BOARD ( 
+			  NUM
+			, PASS
+			, NAME
+			, EMAIL
+			, TITLE
+			, CONTENT
+			, READCOUNT
+			, WRITEDATE 
+		) VALUES ( 
+			  0
+			, #{pass}
+			, #{name}
+			, #{email}
+			, <include refid="title"></include>
+			, <include refid="content"></include>
+			, 0
+			, SYSDATE()
+		)
+	</insert>
+	
+	<update id="updateBoard" parameterType="java.util.Map">
+		UPDATE BOARD SET
+			  PASS = #{pass}
+			, NAME = #{name}
+			, EMAIL = #{email} 
+			, TITLE = <include refid="title"></include>
+			, CONTENT = <include refid="content"></include>
+			<choose>
+				<when test="readcount != null">
+					, READCOUNT = ${readcount}		
+				</when>
+			</choose>
+			<choose>
+				<when test="writedate != null">
+					, WRITEDATE = #{writedate}
+				</when>
+			</choose>
+		WHERE NUM = ${num}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="java.util.Map">
+		DELETE FROM BOARD WHERE NUM = ${num}
+	</delete>
+	
+	<select id="selectBoard" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT NUM AS num
+			 , PASS AS pass
+			 , NAME AS name
+			 , EMAIL AS email
+			 , TITLE AS title
+			 , CONTENT AS content
+			 , READCOUNT AS readcount
+			 , WRITEDATE AS writedate
+		FROM BOARD
+		WHERE NUM = ${num}
+	</select>
+	
+	<select id="selectBoardList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT NUM AS num
+			 , PASS AS pass
+			 , NAME AS name
+			 , EMAIL AS email
+			 , TITLE AS title
+			 , CONTENT AS content
+			 , READCOUNT AS readcount
+			 , WRITEDATE AS writedate
+		FROM BOARD
+	</select>
+	
+	<select id="selectBoardByTitle" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT NUM AS num
+			 , PASS AS pass
+			 , NAME AS name
+			 , EMAIL AS email
+			 , TITLE AS title
+			 , CONTENT AS content
+			 , READCOUNT AS readcount
+			 , WRITEDATE AS writedate
+		FROM BOARD
+		WHERE 1 = 0
+		<foreach collection="titles" item="title" open="OR" separator="OR">
+			TITLE LIKE '%${title}%'
+		</foreach>
+	</select>
+	
+</mapper>
