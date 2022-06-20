@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean id="boy" class="aop01.bean.Boy"></bean>
+	<bean id="girl" class="aop01.bean.Girl"></bean>
+	<bean id="aspect" class="aop01.aspect.PersonAspect"></bean>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(public * aop01..*Something(..))" id="pt"/>
+		<aop:aspect ref="aspect">
+			<!-- aop:before method="doBefore" pointcut-ref="pt" />
+			<aop:after-returning method="doAfterReturning" pointcut-ref="pt" returning="rt" />
+			<aop:after-throwing method="doAfterThrowing" pointcut-ref="pt" throwing="th" />
+			<aop:after method="doAfter" pointcut-ref="pt" / -->
+			<aop:around method="doAround" pointcut-ref="pt"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>
