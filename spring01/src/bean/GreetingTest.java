@@ -1,6 +1,7 @@
 package bean;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class GreetingTest {
@@ -10,10 +11,11 @@ public class GreetingTest {
 		// Greeting gr = new Greeting();
 		
 		// XML 설정에서 객체 생성
-		// <bean id="gr" class="spring01.Greeting"></bean>
+		// <bean id="gr" class="spring01.Greeting" />
 		
 		String configPath = "/context/applicationContext.xml";
-		ApplicationContext context = new GenericXmlApplicationContext(configPath);
+		//ApplicationContext context = new GenericXmlApplicationContext(configPath);
+		ApplicationContext context = new FileSystemXmlApplicationContext("/src" + configPath);
 		
 		System.out.println("?????");
 		
@@ -24,7 +26,8 @@ public class GreetingTest {
 		System.out.println(gr);
 		System.out.println(gr2);
 		
-		((GenericXmlApplicationContext) context).close();
+		//((GenericXmlApplicationContext) context).close();
+		((FileSystemXmlApplicationContext) context).close();
 	}
 	
 }
