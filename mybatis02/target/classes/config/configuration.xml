@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<package name="vo" />
+	</typeAliases>
+	<environments default="mariadb">
+		<environment id="mariadb">
+			<transactionManager type="managed"></transactionManager>
+			<dataSource type="unpooled">
+				<property name="driver" value="org.mariadb.jdbc.Driver"/>
+				<property name="url" value="jdbc:mariadb://localhost:3307/multicampus"/>
+				<property name="username" value="multicampus"/>
+				<property name="password" value="multicampus"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper class="dao.IStudentDao" />
+	</mappers>
+</configuration>
