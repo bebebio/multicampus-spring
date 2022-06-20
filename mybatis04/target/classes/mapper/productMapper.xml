@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IProductDao">
+	
+	<resultMap id="productMap" type="productVo">
+		<id column="CODE" property="code" />
+		<result column="NAME" property="name" />
+		<result column="PRICE" property="price" />
+		<result column="PICTUREURL" property="picture" />
+		<result column="DESCRIPTION" property="description" />
+	</resultMap>
+	
+	<sql id="columns">
+		CODE, NAME, PRICE, PICTUREURL, DESCRIPTION
+	</sql>
+	
+	<insert id="insertProduct" parameterType="productVo">
+		<selectKey keyColumn="CODE" keyProperty="code" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(CODE), 0) + 1 AS CODE FROM PRODUCT
+		</selectKey>
+	
+		INSERT INTO PRODUCT ( 
+			CODE, NAME, PRICE, PICTUREURL, DESCRIPTION 
+		) VALUES ( 
+			${code}, #{name}, ${price}, #{picture}, #{description} 
+		)
+	</insert>
+	
+	<update id="updateProduct" parameterType="productVo">
+		UPDATE PRODUCT SET
+			NAME = #{name},
+			PRICE = ${price},
+			PICTUREURL = #{picture},
+			DESCRIPTION = #{description}
+		WHERE CODE = ${code}
+	</update>
+	
+	<delete id="deleteProduct" parameterType="productVo">
+		DELETE FROM PRODUCT WHERE CODE = ${code}
+	</delete>
+	
+	<select id="selectProductByCode" parameterType="productVo" resultMap="productMap">
+		SELECT <include refid="columns"></include> FROM PRODUCT WHERE CODE = ${code}
+	</select>
+	
+	<select id="selectProduct" parameterType="productVo" resultMap="productMap">
+		SELECT <include refid="columns"></include> FROM PRODUCT
+	</select>
+	
+</mapper>
