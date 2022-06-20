@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+		# lazy-init : 객체 생성 시점
+			* true : getBean() 호출 시 생성
+			* false : 컨텍스트 빌드 시 생성
+			* default : false와 동일	
+
+		# scope : 객체 생성 범위
+			* prototype : getBean() 호출 시 새로운 빈을 생성하여 반환
+			* singleton : 컨텍스트에 생성된 싱글턴 빈을 반환(디폴트)
+			* request : 새로운 request일 때마다 빈을 생성하여 반환
+			* session : 새로운 session일 때마다 빈을 생성하여 반환
+
+		# init-method : 빈 객체 생성 시 동작 함수
+
+		# destroy-method : 빈 객체 소멸 시 동작 함수
+	 -->
+	 
+	<bean id="gr" class="bean.Greeting" lazy-init="true" scope="prototype"
+		init-method="initializeObj" destroy-method="destroyObj"></bean>
+		
+</beans>
