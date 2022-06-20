@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student">
+	
+	<insert id="insert" parameterType="student">
+		INSERT INTO STUDENT (SID, NAME, AGE, SCORE) VALUES ( ${sid}, #{name}, ${age}, ${score} )
+	</insert>
+	
+	<update id="update" parameterType="student">
+		UPDATE STUDENT SET NAME = #{name}, AGE = ${age}, SCORE = ${score} WHERE SID = ${sid}
+	</update>
+	
+	<delete id="delete" parameterType="student">
+		DELETE FROM STUDENT WHERE SID = ${sid}
+	</delete>
+	
+	<select id="selectBySid" parameterType="student" resultType="student">
+		SELECT SID AS sid, NAME AS name, AGE AS age, SCORE AS score FROM STUDENT WHERE SID = ${sid}
+	</select>
+	
+	<select id="select" parameterType="student" resultType="student">
+		SELECT SID AS sid, NAME AS name, AGE AS age, SCORE AS score FROM STUDENT
+	</select>
+	
+</mapper>
